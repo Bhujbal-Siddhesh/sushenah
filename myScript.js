@@ -12,8 +12,8 @@ let aLoadedUnBlurImages = [];
     ];
     const aUnBlurImageLinks = [
         "testImages/01.webp",
-        "testImages/01.webp",
-        "testImages/01.webp",
+        "testImages/02.webp",
+        "testImages/03.webp",
     ];
     let aPairs = [];
 
