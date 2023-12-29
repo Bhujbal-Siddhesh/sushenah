@@ -6,14 +6,14 @@ let aLoadedUnBlurImages = [];
 
 (function () {
     const aBlurImageLinks = [
-        "https://images.pexels.com/photos/1643409/pexels-photo-1643409.jpeg",
-        "https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg",
-        "https://images.pexels.com/photos/3680912/pexels-photo-3680912.jpeg",
+        "testImages/1.webp",
+        "testImages/2.webp",
+        "testImages/3.webp",
     ];
     const aUnBlurImageLinks = [
-        "https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg",
-        "https://images.pexels.com/photos/1183099/pexels-photo-1183099.jpeg",
-        "https://images.pexels.com/photos/50594/sea-bay-waterfront-beach-50594.jpeg",
+        "testImages/01.webp",
+        "testImages/01.webp",
+        "testImages/01.webp",
     ];
     let aPairs = [];
 
