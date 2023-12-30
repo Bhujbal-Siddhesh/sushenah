@@ -49,7 +49,7 @@ let aLoadedUnBlurImages = [];
             const oImageElement = document.createElement("img");
             oImageElement.setAttribute("id", aPairs[nCount_0] + "_" + aDivIds[nCount_1] + "_Img");
             oImageElement.setAttribute("alt", "");
-            oImageElement.setAttribute("width", "412px");
+            oImageElement.setAttribute("width", "100%");
             oImageElement.setAttribute("height", "300px");
 
             const oImageTag = {};
