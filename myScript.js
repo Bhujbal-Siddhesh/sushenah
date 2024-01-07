@@ -3,8 +3,6 @@
 let aObjects = [];
 let aLoadedBlurImages = [];
 let aLoadedUnBlurImages = [];
-let aPairs = [];
-const aDivIds = ["Blur", "UnBlur"];
 
 (function () {
     const aBlurImageLinks = [
@@ -17,7 +15,9 @@ const aDivIds = ["Blur", "UnBlur"];
         "testImages/02.webp",
         "testImages/03.webp",
     ];
-
+    let aPairs = [];
+    const aDivIds = ["Blur", "UnBlur"];
+    
     for (let nCount = 0; nCount < aUnBlurImageLinks.length; nCount++) {
         let nCountTemp = nCount;
         aPairs.push("Pair_" + ++nCountTemp);
