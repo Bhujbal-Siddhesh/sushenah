@@ -3,6 +3,8 @@
 let aObjects = [];
 let aLoadedBlurImages = [];
 let aLoadedUnBlurImages = [];
+let aPairs = [];
+const aDivIds = ["Blur", "UnBlur"];
 
 (function () {
     const aBlurImageLinks = [
@@ -15,14 +17,12 @@ let aLoadedUnBlurImages = [];
         "testImages/02.webp",
         "testImages/03.webp",
     ];
-    let aPairs = [];
 
     for (let nCount = 0; nCount < aUnBlurImageLinks.length; nCount++) {
         let nCountTemp = nCount;
         aPairs.push("Pair_" + ++nCountTemp);
     }
 
-    const aDivIds = ["Blur", "UnBlur"];
     const oGalleryContainer = document.getElementById("galleryContainer");
 
     for (let nCount_0 = 0; nCount_0 < aPairs.length; nCount_0++) {
@@ -49,41 +49,33 @@ let aLoadedUnBlurImages = [];
             const oImageElement = document.createElement("img");
             oImageElement.setAttribute("id", aPairs[nCount_0] + "_" + aDivIds[nCount_1] + "_Img");
             oImageElement.setAttribute("alt", "");
-            oImageElement.setAttribute("width", "100%");
-            oImageElement.setAttribute("height", "300px");
+            oImageElement.setAttribute("width", "50%");
+            oImageElement.setAttribute("height", "50%");
 
             const oImageTag = {};
             oImageTag.imageTagID = aPairs[nCount_0] + "_" + aDivIds[nCount_1] + "_Img";
 
             if (aDivIds[nCount_1] == "Blur") {
                 oImageElement.setAttribute("src", aBlurImageLinks[nCount_0]);
-                oImageElement.setAttribute("onload", "loadUnBlurImages()");
+                oImageElement.setAttribute("onload", "loadUnBlurImages(" + oImageTag.imageTagID + ")");
                 oImageTag.imageTagElement = oImageElement;
-                oChildDiv.blurImageElement = oImageTag;
-                oParentDiv.oBlurDivElement = oChildDiv;
             }
             else if (aDivIds[nCount_1] == "UnBlur") {
                 oChildDivElement.style.display = "none";
                 oImageElement.setAttribute("data-src", aUnBlurImageLinks[nCount_0]);
                 oImageTag.imageTagElement = oImageElement;
-                oChildDiv.unBlurImageElement = oImageTag;
-                oParentDiv.oUnBlurDivElement = oChildDiv;
             }
 
+            oChildDiv.oImageElement = oImageTag;
+            oParentDiv["o" + aDivIds[nCount_1] + "DivElement"] = oChildDiv;//oBlurDivElement, oUnBlurDivElement
             oChildDivElement.appendChild(oImageElement);
         }
         aObjects.push(oParentDiv);
     }
 })()
 
-function loadUnBlurImages() {
-    for (let nCount = 0; nCount < aObjects.length; nCount++) {
-        if (aLoadedBlurImages.includes(aObjects[nCount]))
-            continue;
-
-        if (aObjects[nCount].oBlurDivElement.blurImageElement.imageTagElement.complete)
-            aLoadedBlurImages.push(aObjects[nCount])
-    }
+function loadUnBlurImages(oImageElement) {
+    aLoadedBlurImages.push(oImageElement.id);
 }
 
 let aIntervalLoadedImages = [];
@@ -92,20 +84,20 @@ let myInterval = setInterval(() => {
         clearInterval(myInterval);
 
     for (let nCount = 0; nCount < aLoadedBlurImages.length; nCount++) {
-        if (aIntervalLoadedImages.includes(aLoadedBlurImages[nCount].oUnBlurDivElement.unBlurImageElement.imageTagID))
+        if (aIntervalLoadedImages.includes(aObjects[nCount].oUnBlurDivElement.oImageElement.imageTagID))
             continue;
 
-        if (aLoadedBlurImages[nCount].oUnBlurDivElement.unBlurImageElement.imageTagElement.hasAttribute("src") == false) {
-            aLoadedBlurImages[nCount].oUnBlurDivElement.unBlurImageElement.imageTagElement.setAttribute("src", aLoadedBlurImages[nCount].oUnBlurDivElement.unBlurImageElement.imageTagElement.getAttribute("data-src"));
+        if (aObjects[nCount].oUnBlurDivElement.oImageElement.imageTagElement.hasAttribute("src") == false) {
+            aObjects[nCount].oUnBlurDivElement.oImageElement.imageTagElement.setAttribute("src", aObjects[nCount].oUnBlurDivElement.oImageElement.imageTagElement.getAttribute("data-src"));
             break;
         }
 
-        if (aLoadedBlurImages[nCount].oUnBlurDivElement.unBlurImageElement.imageTagElement.complete == false)
+        if (aObjects[nCount].oUnBlurDivElement.oImageElement.imageTagElement.complete == false)
             break;
         else {
-            aLoadedBlurImages[nCount].oBlurDivElement.childDivElement.style.display = "none";
-            aLoadedBlurImages[nCount].oUnBlurDivElement.childDivElement.style.display = "inline";
-            aIntervalLoadedImages.push(aLoadedBlurImages[nCount].oUnBlurDivElement.unBlurImageElement.imageTagID);
+            aObjects[nCount].oBlurDivElement.childDivElement.style.display = "none";
+            aObjects[nCount].oUnBlurDivElement.childDivElement.style.display = "inline";
+            aIntervalLoadedImages.push(aObjects[nCount].oUnBlurDivElement.oImageElement.imageTagID);
         }
     }
-}, 10);
+}, 1000);
