@@ -11,7 +11,7 @@ let aLoadedUnBlurImages = [];
         "https://bhujbal-siddhesh.github.io/sushenah/testImages/3.webp",
         "https://bhujbal-siddhesh.github.io/sushenah/testImages/2.webp",
         "https://bhujbal-siddhesh.github.io/sushenah/testImages/3.webp",
-        "https://bhujbal-siddhesh.github.io/sushenah/testImages/1.webp"
+        "https://bhujbal-siddhesh.github.io/sushenah/testImages/1.webp",
     ];
     const aUnBlurImageLinks = [
         "https://bhujbal-siddhesh.github.io/sushenah/testImages/01.webp",
@@ -19,7 +19,7 @@ let aLoadedUnBlurImages = [];
         "https://bhujbal-siddhesh.github.io/sushenah/testImages/03.webp",
         "https://bhujbal-siddhesh.github.io/sushenah/testImages/02.webp",
         "https://bhujbal-siddhesh.github.io/sushenah/testImages/03.webp",
-        "https://bhujbal-siddhesh.github.io/sushenah/testImages/01.webp"
+        "https://bhujbal-siddhesh.github.io/sushenah/testImages/01.webp",
     ];
     let aPairs = [];
     const aDivIds = ["Blur", "UnBlur"];
